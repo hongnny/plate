@@ -17,49 +17,56 @@ import {
 import { ELEMENT_HR } from '@udecode/plate-horizontal-rule';
 import { ELEMENT_TOGGLE, openNextToggles } from '@udecode/plate-toggle';
 
-import { preFormat } from './autoformatUtils';
+import { filterNode, preFormat } from './autoformatUtils';
 
 export const autoformatBlocks: AutoformatRule[] = [
   {
     match: '# ',
     mode: 'block',
     preFormat,
+    query: filterNode,
     type: ELEMENT_H1,
   },
   {
     match: '## ',
     mode: 'block',
     preFormat,
+    query: filterNode,
     type: ELEMENT_H2,
   },
   {
     match: '### ',
     mode: 'block',
     preFormat,
+    query: filterNode,
     type: ELEMENT_H3,
   },
   {
     match: '#### ',
     mode: 'block',
     preFormat,
+    query: filterNode,
     type: ELEMENT_H4,
   },
   {
     match: '##### ',
     mode: 'block',
     preFormat,
+    query: filterNode,
     type: ELEMENT_H5,
   },
   {
     match: '###### ',
     mode: 'block',
     preFormat,
+    query: filterNode,
     type: ELEMENT_H6,
   },
   {
     match: '> ',
     mode: 'block',
     preFormat,
+    query: filterNode,
     type: ELEMENT_BLOCKQUOTE,
   },
   {
@@ -72,6 +79,7 @@ export const autoformatBlocks: AutoformatRule[] = [
     match: '```',
     mode: 'block',
     preFormat,
+    query: filterNode,
     triggerAtBlockStart: false,
     type: ELEMENT_CODE_BLOCK,
   },
@@ -79,6 +87,7 @@ export const autoformatBlocks: AutoformatRule[] = [
     match: '+ ',
     mode: 'block',
     preFormat: openNextToggles,
+    query: filterNode,
     type: ELEMENT_TOGGLE,
   },
   {
@@ -91,6 +100,7 @@ export const autoformatBlocks: AutoformatRule[] = [
     },
     match: ['---', '—-', '___ '],
     mode: 'block',
+    query: filterNode,
     type: ELEMENT_HR,
   },
 ];

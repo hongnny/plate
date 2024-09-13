@@ -1,12 +1,15 @@
 import type { AutoformatBlockRule } from '@udecode/plate-autoformat';
 
+import { KEY_AUTOFORMAT } from '@udecode/plate-autoformat';
 import {
   ELEMENT_CODE_BLOCK,
   ELEMENT_CODE_LINE,
 } from '@udecode/plate-code-block';
 import {
   type PlateEditor,
+  getAboveNode,
   getParentNode,
+  getPluginOptions,
   isElement,
   isType,
 } from '@udecode/plate-common';
@@ -43,4 +46,19 @@ export const formatList = (editor: PlateEditor, elementType: string) => {
 
 export const formatText = (editor: PlateEditor, text: string) => {
   format(editor, () => editor.insertText(text));
+};
+
+export const filterNode = (editor: PlateEditor): boolean => {
+  const options = getPluginOptions(editor, KEY_AUTOFORMAT);
+
+  if (!options) return true;
+
+  const { excludeNodeType } = options as any;
+  const entry = getAboveNode(editor);
+
+  if (!entry) return true;
+
+  const [node] = entry;
+
+  return excludeNodeType.every((type: string) => !isType(editor, node, type));
 };

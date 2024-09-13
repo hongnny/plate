@@ -30,6 +30,7 @@ import {
 import { createCaptionPlugin } from '@udecode/plate-caption';
 import {
   ELEMENT_CODE_BLOCK,
+  ELEMENT_CODE_LINE,
   createCodeBlockPlugin,
 } from '@udecode/plate-code-block';
 import { createCommentsPlugin } from '@udecode/plate-comments';
@@ -141,6 +142,7 @@ export const usePlaygroundPlugins = ({
 
   const autoformatOptions = {
     enableUndoOnDelete: true,
+    enabledNodeTypes: [ELEMENT_CODE_BLOCK, ELEMENT_CODE_LINE],
     rules: [...autoformatRules],
   };
 
